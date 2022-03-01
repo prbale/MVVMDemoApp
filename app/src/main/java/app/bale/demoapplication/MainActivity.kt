@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import app.bale.demoapplication.databinding.ActivityMainBinding
 import app.bale.demoapplication.extension.inTransaction
+import app.bale.demoapplication.extension.replaceFragment
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import app.bale.demoapplication.ui.deals.DealsFragment
 import app.bale.demoapplication.ui.profile.ProfileFragment
@@ -114,9 +115,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setCurrentFragment(fragment: Fragment) {
-        supportFragmentManager.inTransaction {
-            replace(R.id.nav_host_fragment_activity_main, fragment)
-            addToBackStack(fragment.javaClass.simpleName)
-        }
+        replaceFragment(fragment, R.id.nav_host_fragment_activity_main)
     }
 }

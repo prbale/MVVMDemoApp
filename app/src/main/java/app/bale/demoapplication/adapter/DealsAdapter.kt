@@ -1,16 +1,19 @@
 package app.bale.demoapplication.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.ItemBinding
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.model.Deal
 import com.bumptech.glide.Glide
 
-class MainAdapter constructor(listener: OnItemClickListener): RecyclerView.Adapter<MainViewHolder>() {
+class MainAdapter constructor(var context: Context, listener: OnItemClickListener): RecyclerView.Adapter<MainViewHolder>() {
 
     var deals = mutableListOf<Deal>()
+
     private var listener: OnItemClickListener? = null
 
     init {
@@ -24,7 +27,6 @@ class MainAdapter constructor(listener: OnItemClickListener): RecyclerView.Adapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-
         val binding = ItemBinding.inflate(inflater, parent, false)
         return MainViewHolder(binding)
     }
@@ -33,7 +35,7 @@ class MainAdapter constructor(listener: OnItemClickListener): RecyclerView.Adapt
         val deal = deals[position]
         holder.binding.txtViewTitle.text = deal.name
         holder.binding.textviewAmount.text = deal.original_cost.toString()
-        holder.binding.textviewProductBy.text = "By " + deal.provider
+        holder.binding.textviewProductBy.text = context.getString(R.string.by_provider, deal.provider)
         holder.binding.textviewLikes.text = deal.like_count.toString()
         holder.binding.textviewComments.text = deal.comments_count.toString()
         Glide.with(holder.itemView.context).load(deal.image_url).into(holder.binding.imgViewIcon)

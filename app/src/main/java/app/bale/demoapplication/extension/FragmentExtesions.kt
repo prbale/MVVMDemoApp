@@ -11,34 +11,34 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     fragmentTransaction.commit()
 }
 
-fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
+fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     supportFragmentManager.inTransaction {
         add(frameId, fragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
+        if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
 
-fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
+fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     supportFragmentManager.inTransaction {
         replace(frameId, fragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
+        if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
 
-fun Fragment.addFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
+fun Fragment.addFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     val currentFragment = this
     activity?.supportFragmentManager?.inTransaction {
         add(frameId, fragment)
         hide(currentFragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
+        if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
 
-fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
+fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     val currentFragment = this
     activity?.supportFragmentManager?.inTransaction {
         replace(frameId, fragment)
         hide(currentFragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
+        if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
