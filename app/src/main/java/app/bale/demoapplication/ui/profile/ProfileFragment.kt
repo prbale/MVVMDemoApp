@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import app.bale.demoapplication.MainActivity
 import app.bale.demoapplication.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,12 +15,12 @@ import app.bale.demoapplication.R
 import app.bale.demoapplication.adapter.MainAdapter
 import app.bale.demoapplication.databinding.FragmentDealsBinding
 import app.bale.demoapplication.extension.addFragment
-import app.bale.demoapplication.extension.replaceFragment
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.model.Deal
 import app.bale.demoapplication.repository.DealsRepository
 import app.bale.demoapplication.repository.RetrofitService
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
+
 
 class DealsFragment : Fragment() {
 
@@ -41,8 +42,6 @@ class DealsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        activity?.title = "Deals"
 
         dealsViewModel = ViewModelProvider(this, MyViewModelFactory(DealsRepository(retrofitService)))[DealsViewModel::class.java]
 
