@@ -25,13 +25,15 @@ class MainActivity : AppCompatActivity() {
         val dealsFragment = DealsFragment()
         val profileFragment = ProfileFragment()
         setCurrentFragment(dealsFragment)
+        actionBar?.title = "Deals"
+        title = "Deals"
 
         binding.navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.deals -> {
                     if( binding.navView.selectedItemId != R.id.deals ) {
                         supportFragmentManager.popBackStack(
-                            profileFragment.javaClass.name,
+                            profileFragment.javaClass.simpleName,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
                         )
                         setCurrentFragment(dealsFragment)
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.profile -> {
                     if( binding.navView.selectedItemId != R.id.profile ) {
                         supportFragmentManager.popBackStack(
-                            dealsFragment.javaClass.name,
+                            dealsFragment.javaClass.simpleName,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
                         )
                         setCurrentFragment(profileFragment)
@@ -65,6 +67,8 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 supportActionBar?.setHomeButtonEnabled(false)
             }
+
+            setTitleOfFragment()
         }
     }
 
@@ -79,28 +83,40 @@ class MainActivity : AppCompatActivity() {
 
     private fun setTitleOfFragment() {
 
-        val index = supportFragmentManager.backStackEntryCount
-        val backEntry : FragmentManager.BackStackEntry  = supportFragmentManager.getBackStackEntryAt(index)
-        val tag: String? = backEntry.name
-        val fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
+        if(supportFragmentManager.backStackEntryCount >= 1) {
 
-        when(fragment) {
-            is DealsFragment -> {
-                supportActionBar?.title = "Deals"
+            val backEntry : FragmentManager.BackStackEntry  = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1)
+            val tag: String? = backEntry.name
+            when(tag) {
+                "DealsFragment" -> {
+                    supportActionBar?.title = "Deals"
+                    title = "Deals"
+                }
+                "DealDetailsFragment" -> {
+                    supportActionBar?.title = "Deal Details"
+                    title = "Deal Details"
+                }
+                "ProfileFragment" -> {
+                    supportActionBar?.title = "Profile"
+                    title = "Profile"
+                }
             }
-            is DealDetailsFragment -> {
-                supportActionBar?.title = "Deal Details"
-            }
-            is ProfileFragment -> {
-                supportActionBar?.title = "Profile"
-            }
+
+
         }
+        else{
+
+        }
+        actionBar?.title = "Deal Details"
+        title = "Deal Details"
+
+
     }
 
     private fun setCurrentFragment(fragment: Fragment) {
         supportFragmentManager.inTransaction {
             replace(R.id.nav_host_fragment_activity_main, fragment)
-            addToBackStack(fragment.javaClass.name)
+            addToBackStack(fragment.javaClass.simpleName)
         }
     }
 }

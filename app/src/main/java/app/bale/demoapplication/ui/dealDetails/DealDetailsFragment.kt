@@ -22,6 +22,8 @@ class DealDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        activity?.actionBar?.title = "Deal Details"
+        activity?.title = "Deal Details"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

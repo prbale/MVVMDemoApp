@@ -14,14 +14,14 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
     supportFragmentManager.inTransaction {
         add(frameId, fragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.name) }
+        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int, backStackTag: String? = null) {
     supportFragmentManager.inTransaction {
         replace(frameId, fragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.name) }
+        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
 
@@ -30,7 +30,7 @@ fun Fragment.addFragment(fragment: Fragment, frameId: Int, backStackTag: String?
     activity?.supportFragmentManager?.inTransaction {
         add(frameId, fragment)
         hide(currentFragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.name) }
+        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
 
@@ -39,6 +39,6 @@ fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, backStackTag: Str
     activity?.supportFragmentManager?.inTransaction {
         replace(frameId, fragment)
         hide(currentFragment)
-        backStackTag?.let { addToBackStack(fragment.javaClass.name) }
+        backStackTag?.let { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
