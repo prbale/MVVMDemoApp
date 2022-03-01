@@ -29,14 +29,26 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.deals -> {
-                    setCurrentFragment(dealsFragment)
-                    actionBar?.title = "Deals"
-                    title = "Deals"
+                    if( binding.navView.selectedItemId != R.id.deals ) {
+                        supportFragmentManager.popBackStack(
+                            profileFragment.javaClass.name,
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE
+                        )
+                        setCurrentFragment(dealsFragment)
+                        actionBar?.title = "Deals"
+                        title = "Deals"
+                    }
                 }
                 R.id.profile -> {
-                    setCurrentFragment(profileFragment)
-                    actionBar?.title = "Profile"
-                    title = "Profile"
+                    if( binding.navView.selectedItemId != R.id.profile ) {
+                        supportFragmentManager.popBackStack(
+                            dealsFragment.javaClass.name,
+                            FragmentManager.POP_BACK_STACK_INCLUSIVE
+                        )
+                        setCurrentFragment(profileFragment)
+                        actionBar?.title = "Profile"
+                        title = "Profile"
+                    }
                 }
             }
             true
@@ -44,17 +56,24 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.addOnBackStackChangedListener {
 
-            setTitleOfFragment()
+            println("backStackEntryCount -> ${supportFragmentManager.backStackEntryCount}")
 
-            println("Logs - supportFragmentManager.backStackEntryCount --> ${supportFragmentManager.backStackEntryCount}")
-
-            if (supportFragmentManager.backStackEntryCount > 0) {
+            if (supportFragmentManager.backStackEntryCount > 1) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true) // show back button
                 supportActionBar?.setHomeButtonEnabled(true)
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 supportActionBar?.setHomeButtonEnabled(false)
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        if(supportFragmentManager.backStackEntryCount == 1) {
+            finish()
+        }
+        else{
+            super.onBackPressed()
         }
     }
 
@@ -68,22 +87,20 @@ class MainActivity : AppCompatActivity() {
         when(fragment) {
             is DealsFragment -> {
                 supportActionBar?.title = "Deals"
-                println("Logs - supportActionBar?.title --> ${supportActionBar?.title}")
             }
             is DealDetailsFragment -> {
                 supportActionBar?.title = "Deal Details"
-                println("Logs - supportActionBar?.title --> ${supportActionBar?.title}")
             }
             is ProfileFragment -> {
                 supportActionBar?.title = "Profile"
-                println("Logs - supportActionBar?.title --> ${supportActionBar?.title}")
             }
         }
     }
 
-
-    private fun setCurrentFragment(fragment: Fragment) =
+    private fun setCurrentFragment(fragment: Fragment) {
         supportFragmentManager.inTransaction {
             replace(R.id.nav_host_fragment_activity_main, fragment)
+            addToBackStack(fragment.javaClass.name)
         }
+    }
 }

@@ -28,7 +28,7 @@ class DealDetailsFragment : Fragment() {
         when (item.itemId) {
             android.R.id.home -> {
                 Toast.makeText(activity, "Back from fragment", Toast.LENGTH_SHORT).show()
-                activity?.onBackPressed()
+                activity?.supportFragmentManager?.popBackStack()
                 return true
             }
         }
