@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.inTransaction {
             replace(R.id.nav_host_fragment_activity_main, fragment)
