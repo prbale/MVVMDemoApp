@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +27,8 @@ class DealsFragment : Fragment() {
 
     private val retrofitService = RetrofitService.getInstance()
 
+    private lateinit var adapter: MainAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         dealsViewModel = ViewModelProvider(this, MyViewModelFactory(DealsRepository(retrofitService)))[DealsViewModel::class.java]
@@ -33,7 +36,7 @@ class DealsFragment : Fragment() {
         binding = FragmentDealsBinding.inflate(inflater)
         val root: View = binding!!.root
 
-        val adapter = MainAdapter(requireContext(), object : OnItemClickListener {
+        adapter = MainAdapter(requireContext(), object : OnItemClickListener {
             override fun onItemClick(item: Deal?) {
                 addFragment(DealDetailsFragment(), R.id.nav_host_fragment_activity_main)
             }
@@ -41,19 +44,36 @@ class DealsFragment : Fragment() {
 
         binding?.rvMain?.adapter = adapter
 
-        dealsViewModel.dealsList.observe(viewLifecycleOwner, {
-            binding?.rvMain?.also { recyclerView ->
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                adapter?.setDealsList(it)
+        dealsViewModel.dealsUiState.observe(viewLifecycleOwner) {
+            when(it) {
+                is DealsUiState.Error -> showError(it.errorMessage)
+                DealsUiState.Loading -> showLoading()
+                is DealsUiState.Success -> loadDeals(it.data)
             }
-        })
-
-        dealsViewModel.errorMessage.observe(viewLifecycleOwner, {
-        })
+         }
 
         dealsViewModel.getAllDeals()
 
         return root
+    }
+
+    private fun showError(errorMessage: String) {
+        binding?.loadingIndicator?.visibility = View.GONE
+        Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showLoading() {
+        binding?.loadingIndicator?.visibility = View.VISIBLE
+    }
+
+    private fun loadDeals(data: List<Deal>?) {
+        binding?.loadingIndicator?.visibility = View.GONE
+        binding?.rvMain?.also { recyclerView ->
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            data?.let {
+                adapter.setDealsList(data)
+            }
+        }
     }
 
     override fun onDestroyView() {
