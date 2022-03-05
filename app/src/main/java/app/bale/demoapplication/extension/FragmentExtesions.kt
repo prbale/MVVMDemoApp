@@ -43,11 +43,3 @@ fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: B
         if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
 }
-
-fun View.visible() {
-    this.visibility = View.VISIBLE
-}
-
-fun View.gone() {
-    this.visibility = View.GONE
-}

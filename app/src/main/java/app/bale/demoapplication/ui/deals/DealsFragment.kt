@@ -40,7 +40,12 @@ class DealsFragment : Fragment() {
 
         adapter = MainAdapter(requireContext(), object : OnItemClickListener {
             override fun onItemClick(item: Deal?) {
-                addFragment(DealDetailsFragment(), R.id.nav_host_fragment_activity_main)
+                item?.let {
+                    addFragment(
+                        DealDetailsFragment.createInstance(it),
+                        R.id.nav_host_fragment_activity_main
+                    )
+                }
             }
         })
 

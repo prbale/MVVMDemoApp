@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import app.bale.demoapplication.MainActivity
+import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.FragmentDealDetailsBinding
+import app.bale.demoapplication.extension.gone
+import app.bale.demoapplication.extension.strickthrough
+import app.bale.demoapplication.extension.visible
+import app.bale.demoapplication.model.Deal
+import com.bumptech.glide.Glide
 
 class DealDetailsFragment : Fragment() {
 
@@ -29,7 +31,6 @@ class DealDetailsFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                Toast.makeText(activity, "Back from fragment", Toast.LENGTH_SHORT).show()
                 activity?.supportFragmentManager?.popBackStack()
                 return true
             }
@@ -48,21 +49,50 @@ class DealDetailsFragment : Fragment() {
         binding = FragmentDealDetailsBinding.inflate(inflater)
         val root: View = binding!!.root
 
-        dealDetailsViewModel.dealsList.observe(viewLifecycleOwner, Observer {
-
-        })
-
-        dealDetailsViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
-
-        })
-
-        dealDetailsViewModel.displayDealDetails()
+        val deal: Deal = arguments?.getParcelable<Deal>("DEAL") as Deal
+        displayDealDetails(deal)
 
         return root
+    }
+
+    private fun displayDealDetails(deal: Deal) {
+
+        binding?.let { binding ->
+            context?.let { Glide.with(it).load(deal.image_url).into(binding.productImage) }
+            binding.textviewComments.text = deal.comments_count.toString()
+            binding.textviewLikes.text = deal.like_count.toString()
+            binding.textviewName.text = deal.name
+            binding.textviewDescription.text = deal.description
+            binding.textviewProductBy.text = context?.getString(R.string.by_provider, deal.provider)
+            binding.txtViewOriginalAmount.apply {
+                text = context.getString(R.string.amount, deal.original_cost.toString())
+                strickthrough()
+            }
+
+            binding.txtViewDiscountedAmount.text = context?.getString(R.string.amount, deal.cost.toString())
+            if(deal.shipping_cost == 0.0) {
+                binding.textviewFreeShipping.visible()
+            }
+            else {
+                binding.textviewFreeShipping.gone()
+            }
+        }
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    companion object {
+        fun createInstance(deal: Deal): DealDetailsFragment {
+            val fragment = DealDetailsFragment()
+            val bundle = Bundle().apply {
+                putParcelable("DEAL", deal)
+            }
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 }

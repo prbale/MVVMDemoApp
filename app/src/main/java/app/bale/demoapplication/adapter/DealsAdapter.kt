@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.ItemBinding
+import app.bale.demoapplication.extension.strickthrough
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.model.Deal
 import com.bumptech.glide.Glide
@@ -34,7 +35,11 @@ class MainAdapter constructor(var context: Context, listener: OnItemClickListene
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val deal = deals[position]
         holder.binding.txtViewTitle.text = deal.name
-        holder.binding.textviewAmount.text = deal.original_cost.toString()
+        holder.binding.txtViewOriginalAmount.apply {
+            text = context?.getString(R.string.amount, deal.original_cost.toString())
+            strickthrough()
+        }
+        holder.binding.txtViewDiscountedAmount.text = context.getString(R.string.amount, deal.cost.toString())
         holder.binding.textviewProductBy.text = context.getString(R.string.by_provider, deal.provider)
         holder.binding.textviewLikes.text = deal.like_count.toString()
         holder.binding.textviewComments.text = deal.comments_count.toString()
