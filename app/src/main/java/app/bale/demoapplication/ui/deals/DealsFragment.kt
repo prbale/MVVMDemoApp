@@ -13,6 +13,8 @@ import app.bale.demoapplication.R
 import app.bale.demoapplication.adapter.MainAdapter
 import app.bale.demoapplication.databinding.FragmentDealsBinding
 import app.bale.demoapplication.extension.addFragment
+import app.bale.demoapplication.extension.gone
+import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.model.Deal
 import app.bale.demoapplication.repository.DealsRepository
@@ -42,7 +44,10 @@ class DealsFragment : Fragment() {
             }
         })
 
-        binding?.rvMain?.adapter = adapter
+        binding?.rvMain?.also {
+            it.adapter = adapter
+            it.layoutManager = LinearLayoutManager(requireContext())
+        }
 
         dealsViewModel.dealsUiState.observe(viewLifecycleOwner) {
             when(it) {
@@ -58,21 +63,18 @@ class DealsFragment : Fragment() {
     }
 
     private fun showError(errorMessage: String) {
-        binding?.loadingIndicator?.visibility = View.GONE
+        binding?.loadingIndicator?.gone()
         Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoading() {
-        binding?.loadingIndicator?.visibility = View.VISIBLE
+        binding?.loadingIndicator?.visible()
     }
 
     private fun loadDeals(data: List<Deal>?) {
-        binding?.loadingIndicator?.visibility = View.GONE
-        binding?.rvMain?.also { recyclerView ->
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-            data?.let {
-                adapter.setDealsList(data)
-            }
+        binding?.loadingIndicator?.gone()
+        data?.let {
+            adapter.setDealsList(data)
         }
     }
 

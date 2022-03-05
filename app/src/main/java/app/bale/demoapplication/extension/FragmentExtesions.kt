@@ -1,5 +1,6 @@
 package app.bale.demoapplication.extension
 
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -41,4 +42,12 @@ fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: B
         hide(currentFragment)
         if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
+}
+
+fun View.visible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.gone() {
+    this.visibility = View.GONE
 }
