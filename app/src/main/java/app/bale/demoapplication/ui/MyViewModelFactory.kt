@@ -1,4 +1,4 @@
-package app.bale.demoapplication
+package app.bale.demoapplication.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

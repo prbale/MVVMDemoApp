@@ -1,13 +1,12 @@
-package app.bale.demoapplication
+package app.bale.demoapplication.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.ActivityMainBinding
-import app.bale.demoapplication.extension.inTransaction
 import app.bale.demoapplication.extension.replaceFragment
-import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import app.bale.demoapplication.ui.deals.DealsFragment
 import app.bale.demoapplication.ui.profile.ProfileFragment
 
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.deals -> {
-                    if( binding.navView.selectedItemId != R.id.deals ) {
+                    if( binding.navView.selectedItemId != R.id.deals) {
                         supportFragmentManager.popBackStack(
                             profileFragment.javaClass.simpleName,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 R.id.profile -> {
-                    if( binding.navView.selectedItemId != R.id.profile ) {
+                    if( binding.navView.selectedItemId != R.id.profile) {
                         supportFragmentManager.popBackStack(
                             dealsFragment.javaClass.simpleName,
                             FragmentManager.POP_BACK_STACK_INCLUSIVE

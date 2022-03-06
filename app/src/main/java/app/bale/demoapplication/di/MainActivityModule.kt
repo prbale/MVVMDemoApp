@@ -1,18 +1,15 @@
 package app.bale.demoapplication.di
 
-import app.bale.demoapplication.repository.RetrofitService
+import app.bale.demoapplication.ui.MainActivity
 import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import dagger.android.ContributesAndroidInjector
 
 
 @Module
-class AppModule {
+abstract class MainActivityModule {
 
-    @Singleton
-    @Provides
-    fun provideRetrofitService(): RetrofitService {
-        return RetrofitService.getInstance()
-    }
-
+    @ContributesAndroidInjector(modules = [
+        FragmentBuilderModule::class
+    ])
+    abstract fun contributeMainActivity(): MainActivity
 }

@@ -1,4 +1,4 @@
-package app.bale.demoapplication.di.component
+package app.bale.demoapplication.di
 
 import android.app.Activity
 import android.app.Application
@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import app.bale.demoapplication.DealsApplication
+import app.bale.demoapplication.di.component.DaggerAppComponent
 import dagger.android.AndroidInjection
-import dagger.android.HasActivityInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
-import javax.inject.Inject
 
 object AppInjector {
 

@@ -11,9 +11,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import app.bale.demoapplication.databinding.FragmentProfileBinding
+import app.bale.demoapplication.di.Injectable
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), Injectable {
 
     private lateinit var profileViewModel: ProfileViewModel
     private var _binding: FragmentProfileBinding? = null

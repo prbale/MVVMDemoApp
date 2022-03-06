@@ -1,20 +1,22 @@
 package app.bale.demoapplication
 
+import android.app.Activity
 import android.app.Application
-import android.content.Context
+import app.bale.demoapplication.di.AppInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
 
 
-class DealsApplication: Application() {
+class DealsApplication: Application(), HasActivityInjector {
 
-    companion object {
-        fun get(context: Context): DealsApplication {
-            return context.applicationContext as DealsApplication
-        }
-    }
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
-
+        AppInjector.init(this)
     }
 
+    override fun activityInjector() = dispatchingAndroidInjector
 }

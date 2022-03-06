@@ -8,10 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.bale.demoapplication.MyViewModelFactory
+import app.bale.demoapplication.ui.MyViewModelFactory
 import app.bale.demoapplication.R
 import app.bale.demoapplication.adapter.MainAdapter
 import app.bale.demoapplication.databinding.FragmentDealsBinding
+import app.bale.demoapplication.di.Injectable
 import app.bale.demoapplication.extension.addFragment
 import app.bale.demoapplication.extension.gone
 import app.bale.demoapplication.extension.visible
@@ -20,20 +21,22 @@ import app.bale.demoapplication.model.Deal
 import app.bale.demoapplication.repository.DealsRepository
 import app.bale.demoapplication.repository.RetrofitService
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
+import javax.inject.Inject
 
-class DealsFragment : Fragment() {
+class DealsFragment : Fragment(), Injectable {
 
     private lateinit var dealsViewModel: DealsViewModel
-
     private var binding: FragmentDealsBinding? = null
-
     private val retrofitService = RetrofitService.getInstance()
-
     private lateinit var adapter: MainAdapter
+    internal lateinit var layoutManager: LinearLayoutManager
+
+    @Inject
+    lateinit var repository: DealsRepository
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        dealsViewModel = ViewModelProvider(this, MyViewModelFactory(DealsRepository(retrofitService)))[DealsViewModel::class.java]
+        dealsViewModel = ViewModelProvider(this, MyViewModelFactory(repository))[DealsViewModel::class.java]
 
         binding = FragmentDealsBinding.inflate(inflater)
         val root: View = binding!!.root
@@ -51,7 +54,7 @@ class DealsFragment : Fragment() {
 
         binding?.rvMain?.also {
             it.adapter = adapter
-            it.layoutManager = LinearLayoutManager(requireContext())
+            it.layoutManager = LinearLayoutManager(context)
         }
 
         dealsViewModel.dealsUiState.observe(viewLifecycleOwner) {

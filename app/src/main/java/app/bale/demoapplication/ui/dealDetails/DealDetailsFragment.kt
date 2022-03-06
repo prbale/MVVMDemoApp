@@ -9,13 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.FragmentDealDetailsBinding
+import app.bale.demoapplication.di.Injectable
 import app.bale.demoapplication.extension.gone
 import app.bale.demoapplication.extension.strickthrough
 import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.model.Deal
 import com.bumptech.glide.Glide
 
-class DealDetailsFragment : Fragment() {
+class DealDetailsFragment : Fragment(), Injectable {
 
     private lateinit var dealDetailsViewModel: DealDetailsViewModel
 

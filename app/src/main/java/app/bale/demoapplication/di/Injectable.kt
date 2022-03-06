@@ -1,4 +1,4 @@
-package app.bale.demoapplication.di.component
+package app.bale.demoapplication.di
 
 
 /**
