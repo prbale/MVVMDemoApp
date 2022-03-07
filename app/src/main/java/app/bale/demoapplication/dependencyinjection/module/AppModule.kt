@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import app.bale.demoapplication.repository.DealsRepository
 import app.bale.demoapplication.repository.RetrofitService
+import app.bale.demoapplication.ui.deals.MainAdapter
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -32,5 +33,4 @@ internal class AppModule {
 
     @Provides
     internal fun provideRepository(retrofitService: RetrofitService): DealsRepository = DealsRepository(retrofitService)
-
 }

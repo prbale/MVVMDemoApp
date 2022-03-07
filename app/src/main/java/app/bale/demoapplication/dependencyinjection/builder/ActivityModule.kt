@@ -5,7 +5,9 @@ import app.bale.demoapplication.ui.deals.DealsListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module
+@Module(includes = [
+    DealsListModule::class
+])
 abstract class ActivityModule {
 
     @ContributesAndroidInjector(modules = [DealsListModule::class])
