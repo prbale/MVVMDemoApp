@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        AndroidInjection.inject(this)
         // Fragment Handling
         val dealsFragment = DealsFragment()
         val profileFragment = ProfileFragment()

@@ -8,11 +8,12 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule
-import javax.inject.Singleton
 
 @Component(modules = [
-    AndroidSupportInjectionModule::class, AndroidInjectionModule::class,
-    AppModule::class, ActivityModule::class
+    AndroidSupportInjectionModule::class,
+    AndroidInjectionModule::class,
+    AppModule::class,
+    ActivityModule::class
 ])
 interface ApplicationComponent {
 
