@@ -10,6 +10,7 @@ import app.bale.demoapplication.extension.replaceFragment
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import app.bale.demoapplication.ui.deals.DealsFragment
 import app.bale.demoapplication.ui.profile.ProfileFragment
+import dagger.android.AndroidInjection
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        AndroidInjection.inject(this)
         // Fragment Handling
         val dealsFragment = DealsFragment()
         val profileFragment = ProfileFragment()

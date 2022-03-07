@@ -1,20 +1,41 @@
 package app.bale.demoapplication
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import androidx.fragment.app.Fragment
+import app.bale.demoapplication.dependencyinjection.component.DaggerApplicationComponent
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import dagger.android.support.DaggerApplication
+import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
 
-class DealsApplication: Application() {
+class DealsApplication: Application(), HasActivityInjector, HasSupportFragmentInjector {
+
+    @Inject
+    internal lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+
+    @Inject
+    internal lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+
+    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjector
 
     companion object {
-        fun get(context: Context): DealsApplication {
-            return context.applicationContext as DealsApplication
-        }
+        lateinit var applicationInstance: DealsApplication
     }
 
     override fun onCreate() {
         super.onCreate()
 
+        DaggerApplicationComponent.builder()
+            .application(this)
+            .build()
+            .inject(this)
     }
 
 }

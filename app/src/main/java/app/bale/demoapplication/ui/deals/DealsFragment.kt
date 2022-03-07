@@ -1,5 +1,6 @@
 package app.bale.demoapplication.ui.deals
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,9 @@ import app.bale.demoapplication.model.Deal
 import app.bale.demoapplication.repository.DealsRepository
 import app.bale.demoapplication.repository.RetrofitService
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Inject
 
 class DealsFragment : Fragment() {
 
@@ -27,13 +31,19 @@ class DealsFragment : Fragment() {
 
     private var binding: FragmentDealsBinding? = null
 
-    private val retrofitService = RetrofitService.getInstance()
-
     private lateinit var adapter: MainAdapter
+
+    @Inject
+    internal lateinit var repository: DealsRepository
+
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        dealsViewModel = ViewModelProvider(this, MyViewModelFactory(DealsRepository(retrofitService)))[DealsViewModel::class.java]
+        dealsViewModel = ViewModelProvider(this, MyViewModelFactory(repository))[DealsViewModel::class.java]
 
         binding = FragmentDealsBinding.inflate(inflater)
         val root: View = binding!!.root
