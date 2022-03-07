@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.demoapplication.MyViewModelFactory
 import app.bale.demoapplication.R
-import app.bale.demoapplication.adapter.MainAdapter
 import app.bale.demoapplication.databinding.FragmentDealsBinding
 import app.bale.demoapplication.extension.addFragment
 import app.bale.demoapplication.extension.gone

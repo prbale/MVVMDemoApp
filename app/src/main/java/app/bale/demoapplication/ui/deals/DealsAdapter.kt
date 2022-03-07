@@ -1,4 +1,4 @@
-package app.bale.demoapplication.adapter
+package app.bale.demoapplication.ui.deals
 
 import android.content.Context
 import android.view.LayoutInflater
