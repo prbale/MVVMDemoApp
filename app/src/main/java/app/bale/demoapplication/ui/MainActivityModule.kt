@@ -1,4 +1,4 @@
-package app.bale.demoapplication
+package app.bale.demoapplication.ui
 
 import dagger.Module
 

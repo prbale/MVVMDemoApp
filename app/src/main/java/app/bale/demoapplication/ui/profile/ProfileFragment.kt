@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import app.bale.demoapplication.MainActivity
+import app.bale.demoapplication.ui.MainActivity
 import app.bale.demoapplication.databinding.FragmentProfileBinding
 import app.bale.demoapplication.extension.callANumber
 import app.bale.demoapplication.extension.launchWebsite

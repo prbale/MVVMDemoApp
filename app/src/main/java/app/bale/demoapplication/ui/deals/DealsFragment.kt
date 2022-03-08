@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.bale.demoapplication.MyViewModelFactory
+import app.bale.demoapplication.ui.MyViewModelFactory
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.FragmentDealsBinding
 import app.bale.demoapplication.extension.addFragment
