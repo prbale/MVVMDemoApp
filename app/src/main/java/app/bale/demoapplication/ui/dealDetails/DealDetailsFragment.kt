@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.FragmentDealDetailsBinding
 import app.bale.demoapplication.extension.gone
-import app.bale.demoapplication.extension.strickthrough
+import app.bale.demoapplication.extension.strikeThrough
 import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.model.Deal
 import com.bumptech.glide.Glide
@@ -66,7 +66,7 @@ class DealDetailsFragment : Fragment() {
             binding.textviewProductBy.text = context?.getString(R.string.by_provider, deal.provider)
             binding.txtViewOriginalAmount.apply {
                 text = context.getString(R.string.amount, deal.original_cost.toString())
-                strickthrough()
+                strikeThrough()
             }
 
             binding.txtViewDiscountedAmount.text = context?.getString(R.string.amount, deal.cost.toString())

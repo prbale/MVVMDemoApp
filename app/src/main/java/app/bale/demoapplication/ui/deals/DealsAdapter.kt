@@ -1,12 +1,11 @@
 package app.bale.demoapplication.ui.deals
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.ItemBinding
-import app.bale.demoapplication.extension.strickthrough
+import app.bale.demoapplication.extension.strikeThrough
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.model.Deal
 import com.bumptech.glide.Glide
@@ -33,7 +32,7 @@ class MainAdapter: RecyclerView.Adapter<MainViewHolder>() {
         holder.binding.txtViewTitle.text = deal.name
         holder.binding.txtViewOriginalAmount.apply {
             text = context?.getString(R.string.amount, deal.original_cost.toString())
-            strickthrough()
+            strikeThrough()
         }
         holder.binding.txtViewDiscountedAmount.text = holder.binding.txtViewDiscountedAmount.context.getString(R.string.amount, deal.cost.toString())
         holder.binding.textviewProductBy.text = holder.binding.textviewProductBy.context.getString(R.string.by_provider, deal.provider)

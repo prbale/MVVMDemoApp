@@ -1,5 +1,8 @@
 package app.bale.demoapplication
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -118,4 +121,5 @@ class MainActivity : AppCompatActivity() {
     private fun setCurrentFragment(fragment: Fragment) {
         replaceFragment(fragment, R.id.nav_host_fragment_activity_main)
     }
+
 }
