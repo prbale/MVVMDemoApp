@@ -1,5 +1,6 @@
 package app.bale.demoapplication.ui.dealDetails
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -13,13 +14,24 @@ import app.bale.demoapplication.extension.gone
 import app.bale.demoapplication.extension.strikeThrough
 import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.data.model.Deal
+import app.bale.demoapplication.dependencyinjection.module.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class DealDetailsFragment : Fragment() {
 
-    private lateinit var dealDetailsViewModel: DealDetailsViewModel
+    lateinit var dealDetailsViewModel: DealDetailsViewModel
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private var binding: FragmentDealDetailsBinding? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +56,7 @@ class DealDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        dealDetailsViewModel = ViewModelProvider(this)[DealDetailsViewModel::class.java]
+        dealDetailsViewModel = ViewModelProvider(this, viewModelFactory)[DealDetailsViewModel::class.java]
 
         binding = FragmentDealDetailsBinding.inflate(inflater)
         val root: View = binding!!.root

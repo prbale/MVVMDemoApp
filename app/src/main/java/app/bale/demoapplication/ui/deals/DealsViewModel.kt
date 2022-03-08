@@ -11,8 +11,9 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class DealsViewModel constructor(private val repository: DealsRepository) : ViewModel() {
+class DealsViewModel @Inject constructor(private val repository: DealsRepository) : ViewModel() {
 
     /**
      * Refer [[DealsUiState]] Sealed class.
@@ -24,23 +25,6 @@ class DealsViewModel constructor(private val repository: DealsRepository) : View
     fun getAllDeals() {
 
         dealsUiState.value = DealsUiState.Loading
-
-        // Call repository method
-//        val response = repository.getAllDeals()
-//
-//        response.enqueue(object : Callback<List<Deal>> {
-//            override fun onResponse(call: Call<List<Deal>>, response: Response<List<Deal>>) {
-//                dealsUiState.postValue(DealsUiState.Success(response.body()))
-//            }
-//
-//            override fun onFailure(call: Call<List<Deal>>, t: Throwable) {
-//                dealsUiState.postValue(
-//                    DealsUiState.Error(
-//                        t.message ?: "An error has occurred !"
-//                    )
-//                )
-//            }
-//        })
 
         disposable.add(
             repository.getAllDeals().subscribeOn(Schedulers.newThread())

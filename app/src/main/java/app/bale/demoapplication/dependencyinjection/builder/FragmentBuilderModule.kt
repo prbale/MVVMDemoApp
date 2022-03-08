@@ -1,5 +1,6 @@
 package app.bale.demoapplication.dependencyinjection.builder
 
+import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import app.bale.demoapplication.ui.deals.DealsFragment
 import app.bale.demoapplication.ui.deals.DealsListModule
 import dagger.Module
@@ -13,5 +14,8 @@ abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [DealsListModule::class])
     abstract fun bindDealsFragment(): DealsFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindDealDetailsFragment(): DealDetailsFragment
 
 }

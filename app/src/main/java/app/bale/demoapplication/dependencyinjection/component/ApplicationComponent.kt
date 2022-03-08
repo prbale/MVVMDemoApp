@@ -5,6 +5,7 @@ import app.bale.demoapplication.DealsApplication
 import app.bale.demoapplication.dependencyinjection.builder.ActivityBuilderModule
 import app.bale.demoapplication.dependencyinjection.builder.FragmentBuilderModule
 import app.bale.demoapplication.dependencyinjection.module.AppModule
+import app.bale.demoapplication.dependencyinjection.module.viewmodel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,7 +16,8 @@ import dagger.android.support.AndroidSupportInjectionModule
     AndroidInjectionModule::class,
     AppModule::class,
     ActivityBuilderModule::class,
-    FragmentBuilderModule::class
+    FragmentBuilderModule::class,
+    ViewModelModule::class
 ])
 interface ApplicationComponent {
 

@@ -18,6 +18,7 @@ import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.data.model.Deal
 import app.bale.demoapplication.data.repository.DealsRepository
+import app.bale.demoapplication.dependencyinjection.module.viewmodel.ViewModelFactory
 import app.bale.demoapplication.extension.showMessage
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import dagger.android.support.AndroidSupportInjection
@@ -33,6 +34,9 @@ class DealsFragment : Fragment() {
 
     private lateinit var dealsViewModel: DealsViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private var binding: FragmentDealsBinding? = null
 
     override fun onAttach(context: Context) {
@@ -42,7 +46,7 @@ class DealsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
-        dealsViewModel = ViewModelProvider(this, MyViewModelFactory(repository))[DealsViewModel::class.java]
+        dealsViewModel = ViewModelProvider(this, viewModelFactory)[DealsViewModel::class.java]
 
         binding = FragmentDealsBinding.inflate(inflater)
         val root: View = binding!!.root
