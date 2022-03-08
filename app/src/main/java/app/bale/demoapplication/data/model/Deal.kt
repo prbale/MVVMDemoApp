@@ -1,4 +1,4 @@
-package app.bale.demoapplication.model
+package app.bale.demoapplication.data.model
 
 import android.os.Parcel
 import android.os.Parcelable

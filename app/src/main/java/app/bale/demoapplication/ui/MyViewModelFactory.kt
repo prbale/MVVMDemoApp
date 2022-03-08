@@ -2,7 +2,7 @@ package app.bale.demoapplication.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import app.bale.demoapplication.repository.DealsRepository
+import app.bale.demoapplication.data.repository.DealsRepository
 import app.bale.demoapplication.ui.deals.DealsViewModel
 
 class MyViewModelFactory constructor(private val repository: DealsRepository):

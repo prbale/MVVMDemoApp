@@ -1,7 +1,7 @@
 package app.bale.demoapplication.ui.dealDetails
 
 import androidx.lifecycle.ViewModel
-import app.bale.demoapplication.model.Deal
+import app.bale.demoapplication.data.model.Deal
 
 class DealDetailsViewModel : ViewModel() {
 

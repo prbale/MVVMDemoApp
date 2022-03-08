@@ -2,10 +2,8 @@ package app.bale.demoapplication.ui.deals
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import app.bale.demoapplication.model.Deal
-import app.bale.demoapplication.repository.DealsRepository
-import kotlinx.coroutines.launch
+import app.bale.demoapplication.data.model.Deal
+import app.bale.demoapplication.data.repository.DealsRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

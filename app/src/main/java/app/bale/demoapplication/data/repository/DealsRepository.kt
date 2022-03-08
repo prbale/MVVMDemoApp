@@ -1,4 +1,4 @@
-package app.bale.demoapplication.repository
+package app.bale.demoapplication.data.repository
 
 import javax.inject.Inject
 

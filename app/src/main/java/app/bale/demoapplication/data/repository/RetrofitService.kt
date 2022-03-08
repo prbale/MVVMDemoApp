@@ -1,6 +1,6 @@
-package app.bale.demoapplication.repository
+package app.bale.demoapplication.data.repository
 
-import app.bale.demoapplication.model.Deal
+import app.bale.demoapplication.data.model.Deal
 import retrofit2.Call
 import retrofit2.http.GET
 

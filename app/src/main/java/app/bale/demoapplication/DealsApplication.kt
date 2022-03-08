@@ -2,13 +2,11 @@ package app.bale.demoapplication
 
 import android.app.Activity
 import android.app.Application
-import android.content.Context
 import androidx.fragment.app.Fragment
 import app.bale.demoapplication.dependencyinjection.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import dagger.android.support.DaggerApplication
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
@@ -31,7 +29,10 @@ class DealsApplication: Application(), HasActivityInjector, HasSupportFragmentIn
 
     override fun onCreate() {
         super.onCreate()
+        initializeComponent()
+    }
 
+    private fun initializeComponent() {
         DaggerApplicationComponent.builder()
             .application(this)
             .build()

@@ -5,10 +5,11 @@ import app.bale.demoapplication.ui.deals.DealsListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module(includes = [
-    DealsListModule::class
-])
-abstract class ActivityModule {
+/*
+ * This builder provides android injector service to fragments
+ */
+@Module
+abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector(modules = [DealsListModule::class])
     abstract fun bindDealsFragment(): DealsFragment

@@ -16,8 +16,8 @@ import app.bale.demoapplication.extension.addFragment
 import app.bale.demoapplication.extension.gone
 import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.listeners.OnItemClickListener
-import app.bale.demoapplication.model.Deal
-import app.bale.demoapplication.repository.DealsRepository
+import app.bale.demoapplication.data.model.Deal
+import app.bale.demoapplication.data.repository.DealsRepository
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
