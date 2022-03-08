@@ -38,3 +38,7 @@ fun Context.launchWebsite(webUrl: String) {
     }
     startActivity(intent)
 }
+
+fun Context.showMessage(message: String, duration: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(this, message, duration).show()
+}

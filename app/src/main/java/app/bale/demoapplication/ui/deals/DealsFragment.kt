@@ -18,6 +18,7 @@ import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.data.model.Deal
 import app.bale.demoapplication.data.repository.DealsRepository
+import app.bale.demoapplication.extension.showMessage
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -77,7 +78,7 @@ class DealsFragment : Fragment() {
 
     private fun showError(errorMessage: String) {
         binding?.loadingIndicator?.gone()
-        Toast.makeText(activity, errorMessage, Toast.LENGTH_SHORT).show()
+        context?.showMessage(errorMessage)
     }
 
     private fun showLoading() {

@@ -1,3 +1,3 @@
 package app.bale.demoapplication.ui.base
 
-class BaseFragment
+abstract class BaseFragment
