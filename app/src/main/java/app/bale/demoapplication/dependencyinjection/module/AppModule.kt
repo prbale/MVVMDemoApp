@@ -9,6 +9,7 @@ import app.bale.demoapplication.data.repository.RetrofitService
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -26,9 +27,11 @@ internal class AppModule {
     internal fun provideContext(application: Application): Context = application
 
     @Provides
+    @Reusable
     internal fun provideGson(): Gson = Gson()
 
     @Provides
+    @Reusable
     fun provideOkHttpClient(): OkHttpClient {
         val okHttpClient = OkHttpClient.Builder()
         okHttpClient.connectTimeout(ApiConstants.CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -43,6 +46,7 @@ internal class AppModule {
     }
 
     @Provides
+    @Reusable
     internal fun provideRetrofitService(okHttpClient: OkHttpClient): RetrofitService {
         return Retrofit.Builder()
             .baseUrl(ApiConstants.BASE_URL)
