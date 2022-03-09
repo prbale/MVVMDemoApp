@@ -8,12 +8,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
-class DealsViewModel @Inject constructor(val repository: DealsRepository) : ViewModel() {
+class DealsViewModel @Inject constructor(private val repository: DealsRepository) : ViewModel() {
 
     /**
      * Refer [[DealsUiState]] Sealed class.
