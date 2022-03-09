@@ -6,11 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import javax.inject.Inject
 
 abstract class BaseActivity<V: ViewModel, D: ViewDataBinding>(private val mViewModelClass: Class<V>)
         : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @get:LayoutRes
     protected abstract val layoutRes: Int
@@ -20,7 +23,7 @@ abstract class BaseActivity<V: ViewModel, D: ViewDataBinding>(private val mViewM
     }
 
     val viewModel by lazy {
-        ViewModelProviders.of(this)[mViewModelClass]
+        ViewModelProvider(this, viewModelFactory)[mViewModelClass]
     }
 
     /**

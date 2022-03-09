@@ -19,7 +19,7 @@ abstract class BaseFragment<V : ViewModel, D : ViewDataBinding>(private val mVie
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    protected var viewModel: V? = null
+    protected lateinit var viewModel: V
     protected lateinit var dataBinding: D
 
     open fun init() {}
@@ -30,6 +30,7 @@ abstract class BaseFragment<V : ViewModel, D : ViewDataBinding>(private val mVie
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+
         viewModel = ViewModelProvider(this, viewModelFactory)[mViewModelClass]
     }
 
@@ -38,6 +39,7 @@ abstract class BaseFragment<V : ViewModel, D : ViewDataBinding>(private val mVie
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         dataBinding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         return dataBinding.root
     }
