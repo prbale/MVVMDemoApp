@@ -5,4 +5,5 @@
     <string name="title_notifications">Notifications</string>
     <string name="by_provider">By %1$s</string>
     <string name="amount">$ %1$s</string>
+    <string name="deal_image">Deal Image</string>
 </resources>
