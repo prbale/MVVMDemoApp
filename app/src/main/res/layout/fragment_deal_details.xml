@@ -92,24 +92,25 @@
                 android:id="@+id/txtView_discounted_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/textview_name"
                 android:layout_marginTop="10dp"
-                tools:text="0.00"
+                android:layout_below="@+id/textview_name"
+                android:layout_centerVertical="true"
+                android:textColor="#f00"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:textSize="20sp" />
+                tools:text="0.00" />
 
             <TextView
                 android:id="@+id/txtView_original_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/txtView_discounted_amount"
                 android:layout_below="@+id/textview_name"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                tools:text="0.00"
-                android:textColor="#f00"
-                android:textStyle="bold"
-                android:textSize="20sp" />
+                android:layout_marginTop="11dp"
+                android:layout_toEndOf="@+id/txtView_discounted_amount"
+                android:textSize="18sp"
+                tools:text="0.00" />
 
 
             <TextView

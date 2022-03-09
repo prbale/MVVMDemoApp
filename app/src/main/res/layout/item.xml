@@ -55,8 +55,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_centerVertical="true"
                     tools:text="0.00"
+                    android:gravity="center_vertical"
+                    android:textColor="#f00"
                     android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/txtView_original_amount"
@@ -66,10 +68,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     tools:text="0.00"
+                    android:gravity="center_vertical"
                     android:layout_centerVertical="true"
-                    android:textColor="#f00"
-                    android:textStyle="bold"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
 
                 <TextView
