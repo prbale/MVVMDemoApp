@@ -1,4 +1,4 @@
-package app.bale.demoapplication.ui.deals
+package app.bale.demoapplication.ui.dealList
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer

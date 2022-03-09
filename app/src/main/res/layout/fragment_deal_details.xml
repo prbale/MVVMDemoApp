@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/screen_bg_color"
-    tools:context=".ui.deals.DealsFragment">
+    tools:context=".ui.dealList.DealsFragment">
 
     <ImageView
         android:id="@+id/productImage"

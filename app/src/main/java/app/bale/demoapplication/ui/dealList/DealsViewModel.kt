@@ -1,4 +1,4 @@
-package app.bale.demoapplication.ui.deals
+package app.bale.demoapplication.ui.dealList
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

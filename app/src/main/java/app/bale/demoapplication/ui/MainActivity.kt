@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.ActivityMainBinding
 import app.bale.demoapplication.extension.replaceFragment
-import app.bale.demoapplication.ui.deals.DealsFragment
+import app.bale.demoapplication.ui.dealList.DealsFragment
 import app.bale.demoapplication.ui.profile.ProfileFragment
 
 

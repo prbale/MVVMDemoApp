@@ -3,7 +3,7 @@ package app.bale.demoapplication.dependencyinjection.module.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import app.bale.demoapplication.ui.dealDetails.DealDetailsViewModel
-import app.bale.demoapplication.ui.deals.DealsViewModel
+import app.bale.demoapplication.ui.dealList.DealsViewModel
 
 import dagger.Binds
 import dagger.Module

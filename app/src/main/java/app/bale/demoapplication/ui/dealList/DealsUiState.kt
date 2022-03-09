@@ -1,4 +1,4 @@
-package app.bale.demoapplication.ui.deals
+package app.bale.demoapplication.ui.dealList
 
 import app.bale.demoapplication.data.model.Deal
 

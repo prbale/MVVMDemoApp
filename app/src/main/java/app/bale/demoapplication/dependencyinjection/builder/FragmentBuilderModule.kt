@@ -1,8 +1,8 @@
 package app.bale.demoapplication.dependencyinjection.builder
 
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
-import app.bale.demoapplication.ui.deals.DealsFragment
-import app.bale.demoapplication.ui.deals.DealsListModule
+import app.bale.demoapplication.ui.dealList.DealsFragment
+import app.bale.demoapplication.ui.dealList.DealsListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
