@@ -13,7 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class DealsViewModel @Inject constructor(private val repository: DealsRepository) : ViewModel() {
+class DealsViewModel @Inject constructor(val repository: DealsRepository) : ViewModel() {
 
     /**
      * Refer [[DealsUiState]] Sealed class.
