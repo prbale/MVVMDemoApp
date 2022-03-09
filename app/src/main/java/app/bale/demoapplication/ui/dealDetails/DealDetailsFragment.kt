@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import app.bale.demoapplication.R
+import app.bale.demoapplication.data.model.Deal
 import app.bale.demoapplication.databinding.FragmentDealDetailsBinding
+import app.bale.demoapplication.dependencyinjection.module.viewmodel.ViewModelFactory
 import app.bale.demoapplication.extension.gone
 import app.bale.demoapplication.extension.strikeThrough
 import app.bale.demoapplication.extension.visible
-import app.bale.demoapplication.data.model.Deal
-import app.bale.demoapplication.dependencyinjection.module.viewmodel.ViewModelFactory
 import com.bumptech.glide.Glide
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -90,11 +90,6 @@ class DealDetailsFragment : Fragment() {
             }
         }
 
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 
     companion object {

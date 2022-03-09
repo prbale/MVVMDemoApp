@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import app.bale.demoapplication.R
-import app.bale.demoapplication.databinding.ItemBinding
-import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.data.model.Deal
+import app.bale.demoapplication.databinding.ItemBinding
 import app.bale.demoapplication.extension.strikeThrough
+import app.bale.demoapplication.listeners.OnItemClickListener
 import com.bumptech.glide.Glide
 
 class MainAdapter: RecyclerView.Adapter<MainViewHolder>() {
