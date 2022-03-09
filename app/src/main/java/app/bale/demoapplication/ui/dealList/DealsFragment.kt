@@ -42,12 +42,29 @@ class DealsFragment : Fragment() {
         super.onAttach(context)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
         dealsViewModel = ViewModelProvider(this, viewModelFactory)[DealsViewModel::class.java]
 
         binding = FragmentDealsBinding.inflate(inflater)
-        val root: View = binding!!.root
+
+        return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
+
+    private fun setup() {
+        binding?.rvMain?.also {
+            it.adapter = adapter
+            it.layoutManager = LinearLayoutManager(requireContext())
+        }
 
         adapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(item: Deal?) {
@@ -60,22 +77,15 @@ class DealsFragment : Fragment() {
             }
         })
 
-        binding?.rvMain?.also {
-            it.adapter = adapter
-            it.layoutManager = LinearLayoutManager(requireContext())
-        }
-
         dealsViewModel.dealsUiState.observe(viewLifecycleOwner) {
             when(it) {
                 is DealsUiState.Error -> showError(it.errorMessage)
                 DealsUiState.Loading -> showLoading()
                 is DealsUiState.Success -> loadDeals(it.data)
             }
-         }
+        }
 
         dealsViewModel.getAllDeals()
-
-        return root
     }
 
     private fun showError(errorMessage: String) {
