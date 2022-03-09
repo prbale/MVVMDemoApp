@@ -26,9 +26,6 @@ class DealsFragment :
     @Inject
     internal lateinit var adapter: MainAdapter
 
-    @Inject
-    internal lateinit var repository: DealsRepository
-
     override val layoutRes: Int
         get() = R.layout.fragment_deals
 
