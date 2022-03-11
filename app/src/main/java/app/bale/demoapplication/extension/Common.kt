@@ -6,7 +6,9 @@ import android.content.pm.PackageManager
 import android.graphics.Paint
 import android.net.Uri
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 
 fun View.visible() {
@@ -36,3 +38,4 @@ fun Context.launchWebsite(webUrl: String) {
     startActivity(intent)
 }
 
+fun ImageView.loadImage(imageUrl: String?) = Glide.with(this.context).load(imageUrl).into(this)
