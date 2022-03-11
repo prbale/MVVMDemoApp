@@ -16,7 +16,9 @@ data class Deal (
     var like_count: Int? = null,
     var comments_count: Int? = null,
     var shipping_cost: Double? = null
+
 ) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),

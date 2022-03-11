@@ -1,5 +1,6 @@
 package app.bale.demoapplication.ui.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,6 @@ abstract class BaseFragment<V : ViewModel, D : ViewDataBinding>(private val mVie
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         dataBinding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
         return dataBinding.root
     }

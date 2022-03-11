@@ -1,7 +1,6 @@
 package app.bale.demoapplication.dependencyinjection.builder
 
 import app.bale.demoapplication.ui.MainActivity
-import app.bale.demoapplication.ui.dealList.DealsListModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -11,7 +10,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBuilderModule {
 
-    @ContributesAndroidInjector(modules = [DealsListModule::class])
+    @ContributesAndroidInjector
     abstract fun bindMainActivity(): MainActivity
 
 }

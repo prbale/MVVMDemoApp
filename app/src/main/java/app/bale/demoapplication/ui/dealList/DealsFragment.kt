@@ -1,6 +1,5 @@
 package app.bale.demoapplication.ui.dealList
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,11 +26,6 @@ class DealsFragment :
 
     override val layoutRes: Int
         get() = R.layout.fragment_deals
-
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -7,10 +7,13 @@ import androidx.fragment.app.FragmentManager
 import app.bale.demoapplication.R
 import app.bale.demoapplication.databinding.ActivityMainBinding
 import app.bale.demoapplication.extension.replaceFragment
+import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
 import app.bale.demoapplication.ui.dealList.DealsFragment
 import app.bale.demoapplication.ui.profile.ProfileFragment
 
-
+/**
+ * Not extended with BaseActivity as we don't need ViewModel for this activity
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -25,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         val dealsFragment = DealsFragment()
         val profileFragment = ProfileFragment()
         setCurrentFragment(dealsFragment)
-        actionBar?.title = "Deals"
-        title = "Deals"
+
+        setScreenTitle(getString(R.string.deals_title))
 
         binding.navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -37,8 +40,7 @@ class MainActivity : AppCompatActivity() {
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
                         )
                         setCurrentFragment(dealsFragment)
-                        actionBar?.title = "Deals"
-                        title = "Deals"
+                        setScreenTitle(getString(R.string.deals_title))
                     }
                 }
                 R.id.profile -> {
@@ -48,18 +50,13 @@ class MainActivity : AppCompatActivity() {
                             FragmentManager.POP_BACK_STACK_INCLUSIVE
                         )
                         setCurrentFragment(profileFragment)
-                        actionBar?.title = "Profile"
-                        title = "Profile"
-                    }
+                        setScreenTitle(getString(R.string.profile_title))                    }
                 }
             }
             true
         }
 
         supportFragmentManager.addOnBackStackChangedListener {
-
-            println("backStackEntryCount -> ${supportFragmentManager.backStackEntryCount}")
-
             if (supportFragmentManager.backStackEntryCount > 1) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true) // show back button
                 supportActionBar?.setHomeButtonEnabled(true)
@@ -67,7 +64,6 @@ class MainActivity : AppCompatActivity() {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
                 supportActionBar?.setHomeButtonEnabled(false)
             }
-
             setTitleOfFragment()
         }
     }
@@ -81,6 +77,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun AppCompatActivity.setScreenTitle(title: String) {
+        actionBar?.title = title
+        this.title = title
+    }
+
     private fun setTitleOfFragment() {
 
         if(supportFragmentManager.backStackEntryCount >= 1) {
@@ -88,33 +89,24 @@ class MainActivity : AppCompatActivity() {
             val backEntry : FragmentManager.BackStackEntry  = supportFragmentManager.getBackStackEntryAt(supportFragmentManager.backStackEntryCount - 1)
             val tag: String? = backEntry.name
             when(tag) {
-                "DealsFragment" -> {
-                    supportActionBar?.title = "Deals"
-                    title = "Deals"
+                DealsFragment::class.simpleName -> {
+                    setScreenTitle(getString(R.string.deals_title))
                 }
-                "DealDetailsFragment" -> {
-                    supportActionBar?.title = "Deal Details"
-                    title = "Deal Details"
+                DealDetailsFragment::class.simpleName -> {
+                    setScreenTitle(getString(R.string.deal_details_title))
                 }
-                "ProfileFragment" -> {
-                    supportActionBar?.title = "Profile"
-                    title = "Profile"
+                ProfileFragment::class.simpleName -> {
+                    setScreenTitle(getString(R.string.profile_title))
                 }
             }
-
-
         }
-        else{
 
-        }
-        actionBar?.title = "Deal Details"
-        title = "Deal Details"
-
+        setScreenTitle(getString(R.string.deal_details_title))
 
     }
 
-    private fun setCurrentFragment(fragment: Fragment) {
+    private fun setCurrentFragment(fragment: Fragment) =
         replaceFragment(fragment, R.id.nav_host_fragment_activity_main)
-    }
+
 
 }

@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
+/**
+ * Base class for all activities.
+ */
 abstract class BaseActivity<V: ViewModel, D: ViewDataBinding>(private val mViewModelClass: Class<V>)
         : AppCompatActivity() {
 

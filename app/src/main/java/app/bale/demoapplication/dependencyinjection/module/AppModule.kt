@@ -2,7 +2,7 @@ package app.bale.demoapplication.dependencyinjection.module
 
 import android.app.Application
 import android.content.Context
-import app.bale.demoapplication.data.ApiConstants
+import app.bale.demoapplication.constants.ApiConstants
 import app.bale.demoapplication.data.repository.DealsRepository
 import app.bale.demoapplication.data.repository.RequestInterceptor
 import app.bale.demoapplication.data.repository.RetrofitService
@@ -32,31 +32,30 @@ internal class AppModule {
 
     @Provides
     @Reusable
-    fun provideOkHttpClient(): OkHttpClient {
-        val okHttpClient = OkHttpClient.Builder()
-        okHttpClient.connectTimeout(ApiConstants.CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
-        okHttpClient.readTimeout(ApiConstants.READ_TIMEOUT, TimeUnit.MILLISECONDS)
-        okHttpClient.writeTimeout(ApiConstants.WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
-        okHttpClient.addInterceptor(RequestInterceptor())
-        val httpLoggingInterceptor = HttpLoggingInterceptor()
-        okHttpClient.addInterceptor(httpLoggingInterceptor.apply {
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder().apply {
+        connectTimeout(ApiConstants.CONNECT_TIMEOUT, TimeUnit.MILLISECONDS)
+        readTimeout(ApiConstants.READ_TIMEOUT, TimeUnit.MILLISECONDS)
+        writeTimeout(ApiConstants.WRITE_TIMEOUT, TimeUnit.MILLISECONDS)
+        addInterceptor(RequestInterceptor())
+        addInterceptor(HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
         })
-        return okHttpClient.build()
-    }
+    }.build()
+
 
     @Provides
     @Reusable
-    internal fun provideRetrofitService(okHttpClient: OkHttpClient): RetrofitService {
-        return Retrofit.Builder()
+    internal fun provideRetrofitService(okHttpClient: OkHttpClient): RetrofitService =
+        Retrofit.Builder()
             .baseUrl(ApiConstants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .build()
             .create(RetrofitService::class.java)
-    }
+
 
     @Provides
-    internal fun provideRepository(retrofitService: RetrofitService): DealsRepository = DealsRepository(retrofitService)
+    internal fun provideRepository(retrofitService: RetrofitService): DealsRepository =
+        DealsRepository(retrofitService)
 }

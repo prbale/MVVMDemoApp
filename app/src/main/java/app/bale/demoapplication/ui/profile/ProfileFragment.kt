@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import app.bale.demoapplication.ui.MainActivity
+import app.bale.demoapplication.constants.AppConstants
 import app.bale.demoapplication.databinding.FragmentProfileBinding
 import app.bale.demoapplication.extension.callANumber
 import app.bale.demoapplication.extension.launchWebsite
 import app.bale.demoapplication.extension.sendAnEmail
+import app.bale.demoapplication.ui.MainActivity
 
 
 class ProfileFragment : Fragment() {
@@ -38,23 +39,19 @@ class ProfileFragment : Fragment() {
     private fun addButtonClickListeners() {
 
         binding.callBtn.setOnClickListener {
-            context?.callANumber(phoneNumber = "+918530669827")
+            context?.callANumber(phoneNumber = AppConstants.PHONE_NUMBER)
         }
 
         binding.emailBtn.setOnClickListener {
-            (activity as? MainActivity)?.sendAnEmail(
-                email = "prashant.bale@hotmail.com",
-                subject = "Hello",
-                body = ""
-            )
+            (activity as? MainActivity)?.sendAnEmail(email = AppConstants.EMAIL)
         }
 
         binding.linkediBtn.setOnClickListener {
-            context?.launchWebsite(webUrl = "http://www.linkedin.com/profile/view?id=prashantbale")
+            context?.launchWebsite(webUrl = AppConstants.LINKED_IN_PROFILE)
         }
 
         binding.githubBtn.setOnClickListener {
-            context?.launchWebsite(webUrl = "https://github.com/prbale/")
+            context?.launchWebsite(webUrl = AppConstants.GITHUB_PROFILE)
         }
     }
 
