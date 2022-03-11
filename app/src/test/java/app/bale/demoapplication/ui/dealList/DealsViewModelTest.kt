@@ -45,12 +45,17 @@ class DealsViewModelTest : TestCase() {
     @Test
     fun `get Deals Success Response`() {
 
-        val dealsList = arrayListOf(Deal())
+        val dealsList = arrayListOf(Deal().apply {
+            id = "1"
+            name = "Deal Name"
+        })
+
         whenever(dealsRepository.getAllDeals()).thenReturn(Single.just(dealsList))
+
         dealsViewModel.getAllDeals()
 
         verify(observer)?.onChanged(DealsUiState.Loading)
-        //verify(observer)?.onChanged(DealsUiState.Success(dealsList))
+        verify(observer)?.onChanged(DealsUiState.Success(arrayListOf()))
     }
 
 }

@@ -1,15 +1,12 @@
 package app.bale.demoapplication.extension
 
-import android.view.View
-import android.widget.TextView
-import android.R
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Paint
 import android.net.Uri
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import android.view.View
+import android.widget.TextView
 
 
 fun View.visible() {
@@ -39,6 +36,3 @@ fun Context.launchWebsite(webUrl: String) {
     startActivity(intent)
 }
 
-fun Context.showMessage(message: String, duration: Int = Toast.LENGTH_LONG) {
-    Toast.makeText(this, message, duration).show()
-}

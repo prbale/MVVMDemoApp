@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.demoapplication.R
 import app.bale.demoapplication.data.model.Deal
-import app.bale.demoapplication.data.repository.DealsRepository
 import app.bale.demoapplication.databinding.FragmentDealsBinding
 import app.bale.demoapplication.extension.addFragment
 import app.bale.demoapplication.extension.gone
@@ -54,41 +53,44 @@ class DealsFragment :
 
     private fun setup() {
 
-        adapter.setOnItemClickListener(object : OnItemClickListener {
-            override fun onItemClick(item: Deal?) {
-                item?.let {
-                    addFragment(
-                        DealDetailsFragment.createInstance(it),
-                        R.id.nav_host_fragment_activity_main
-                    )
-                }
-            }
-        })
+        // Item click listener
+        adapter.setOnItemClickListener(onDealItemClickListener())
 
-        viewModel?.dealsUiState?.observe(viewLifecycleOwner) {
-            when(it) {
-                is DealsUiState.Error -> showError(it.errorMessage)
-                DealsUiState.Loading -> showLoading()
-                is DealsUiState.Success -> loadDeals(it.data)
+        // Observe
+        viewModel.dealsUiState.observe(viewLifecycleOwner) { state -> handleState(state) }
+
+        // Trigger call
+        viewModel.getAllDeals()
+    }
+
+    private fun handleState(state: DealsUiState?) {
+        when (state) {
+            is DealsUiState.Error -> showError(state.errorMessage)
+            is DealsUiState.Loading -> showLoading()
+            is DealsUiState.Success -> loadDeals(state.data)
+        }
+    }
+
+    private fun onDealItemClickListener() = object : OnItemClickListener {
+        override fun onItemClick(item: Deal?) {
+            item?.let {
+                addFragment(
+                    DealDetailsFragment.createInstance(it),
+                    R.id.nav_host_fragment_activity_main
+                )
             }
         }
-
-        viewModel?.getAllDeals()
     }
 
     private fun showError(errorMessage: String) {
         dataBinding.loadingIndicator.gone()
-        context?.showMessage(errorMessage)
+        showMessage(errorMessage)
     }
 
-    private fun showLoading() {
-        dataBinding.loadingIndicator.visible()
-    }
+    private fun showLoading() = dataBinding.loadingIndicator.visible()
 
     private fun loadDeals(data: List<Deal>?) {
         dataBinding.loadingIndicator.gone()
-        data?.let {
-            adapter.setDealsList(data)
-        }
+        data?.let { adapter.setDealsList(it) }
     }
 }

@@ -1,6 +1,6 @@
 package app.bale.demoapplication.extension
 
-import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -42,4 +42,8 @@ fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: B
         hide(currentFragment)
         if(addToBackstack) { addToBackStack(fragment.javaClass.simpleName) }
     }
+}
+
+fun Fragment.showMessage(message: String, duration: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(context, message, duration).show()
 }

@@ -4,7 +4,7 @@ import app.bale.demoapplication.data.model.Deal
 import io.reactivex.Single
 import javax.inject.Inject
 
-class DealsRepository @Inject constructor(private val retrofitService: RetrofitService) {
+class DealsRepository @Inject constructor(var retrofitService: RetrofitService) {
 
     fun getAllDeals(): Single<List<Deal>> = retrofitService.getAllDeals()
 }
