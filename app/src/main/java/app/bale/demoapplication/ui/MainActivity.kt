@@ -100,9 +100,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        setScreenTitle(getString(R.string.deal_details_title))
-
     }
 
     private fun setCurrentFragment(fragment: Fragment) =
