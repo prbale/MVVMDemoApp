@@ -28,6 +28,11 @@ class DealDetailsFragment : Fragment() {
 
     private var binding: FragmentDealDetailsBinding? = null
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)

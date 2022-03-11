@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun AppCompatActivity.setScreenTitle(title: String) {
+    private fun AppCompatActivity.setScreenTitle(title: String) {
         actionBar?.title = title
         this.title = title
     }
