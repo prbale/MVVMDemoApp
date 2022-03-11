@@ -35,6 +35,7 @@ fun Fragment.addFragment(fragment: Fragment, frameId: Int, addToBackstack: Boole
     }
 }
 
+@Suppress("unused")
 fun Fragment.replaceFragment(fragment: Fragment, frameId: Int, addToBackstack: Boolean = true) {
     val currentFragment = this
     activity?.supportFragmentManager?.inTransaction {
