@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.bale.demoapplication.R
 import app.bale.demoapplication.data.model.Deal
+import app.bale.demoapplication.data.util.Resource
+import app.bale.demoapplication.data.util.Status
 import app.bale.demoapplication.databinding.FragmentDealsBinding
 import app.bale.demoapplication.extension.addFragment
 import app.bale.demoapplication.extension.gone
@@ -15,7 +17,6 @@ import app.bale.demoapplication.extension.visible
 import app.bale.demoapplication.listeners.OnItemClickListener
 import app.bale.demoapplication.ui.base.BaseFragment
 import app.bale.demoapplication.ui.dealDetails.DealDetailsFragment
-import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class DealsFragment :
@@ -51,17 +52,17 @@ class DealsFragment :
         adapter.setOnItemClickListener(onDealItemClickListener())
 
         // Observe
-        viewModel.dealsUiState.observe(viewLifecycleOwner) { state -> handleState(state) }
+        viewModel.deals.observe(viewLifecycleOwner) { state -> handleState(state) }
 
         // Trigger call
         viewModel.getAllDeals()
     }
 
-    private fun handleState(state: DealsUiState?) {
-        when (state) {
-            is DealsUiState.Error -> showError(state.errorMessage)
-            is DealsUiState.Loading -> showLoading()
-            is DealsUiState.Success -> loadDeals(state.data)
+    private fun handleState(state: Resource<List<Deal>>) {
+        when (state.status) {
+            Status.SUCCESS -> loadDeals(state.data)
+            Status.LOADING -> showLoading()
+            Status.ERROR -> showError(state.message ?: "An error has occurred !")
         }
     }
 
