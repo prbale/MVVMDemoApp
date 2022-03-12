@@ -1,4 +1,8 @@
-"# MvvMDemoApp" 
+# Android MVVM Architecture: Sample App
+
+## Screenshots
+<img src="screenshots/deal_list.png" height="500"/>
+<img src="screenshots/deal_details.png" height="500"/>
 
 
 ## Package Structures
@@ -30,3 +34,6 @@ com.bale.demoapplication # Root Package
 └── DealsApplication     # Application Class
 
 ```
+
+
+Just make pull request. You are in!
