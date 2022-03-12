@@ -1,7 +1,7 @@
 # Android MVVM Architecture: Sample App
 
 ## Screenshots
-<img src="screenshots/deal_list.png" height="500"/>
+<img src="screenshots/deals_list.png" height="500"/>
 <img src="screenshots/deal_details.png" height="500"/>
 
 
