@@ -1,13 +1,12 @@
 package app.bale.demoapplication.ui.dealList
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import app.bale.demoapplication.data.model.Deal
 import app.bale.demoapplication.data.repository.DealsRepository
 import app.bale.demoapplication.data.util.Resource
 import app.bale.demoapplication.ui.base.BaseViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableSingleObserver
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -19,22 +18,19 @@ class DealsViewModel @Inject constructor(private val repository: DealsRepository
 
     fun getAllDeals() {
 
-        deals.value = Resource.loading(null)
+        viewModelScope.launch {
 
-        compositeDisposable.add(
-            repository.getAllDeals().subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith( object: DisposableSingleObserver<List<Deal>>() {
-                    override fun onSuccess(value: List<Deal>?) {
-                        deals.value = Resource.success(value)
-                    }
+            deals.value = Resource.loading(null)
 
-                    override fun onError(e: Throwable?) {
-                        deals.value = Resource.error(e?.message ?: "An error has occurred !", null)
-                    }
-
-                })
-        )
-
+            try {
+                val data = repository.getAllDeals()
+                deals.value = Resource.success(data)
+            }
+            catch (error: Exception) {
+                deals.value = Resource.error(
+                    error.message ?: "An error has occurred !",
+                    null)
+            }
+        }
     }
 }
