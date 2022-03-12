@@ -10,6 +10,9 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * View Model for [DealsFragment]
+ */
 class DealsViewModel @Inject constructor(private val repository: DealsRepository) : BaseViewModel() {
 
     val deals = MutableLiveData<Resource<List<Deal>>>()

@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import app.bale.demoapplication.data.model.Deal
 import app.bale.demoapplication.data.repository.DealsRepository
 import app.bale.demoapplication.data.repository.RetrofitService
+import app.bale.demoapplication.data.util.Resource
 import io.reactivex.Single
 import junit.framework.TestCase
 import org.junit.Before
@@ -25,21 +26,18 @@ class DealsViewModelTest : TestCase() {
     var rule = InstantTaskExecutorRule()
 
     @Mock
-    lateinit var retrofitService: RetrofitService
-
     lateinit var dealsRepository: DealsRepository
 
     lateinit var dealsViewModel: DealsViewModel
 
     @Mock
-    var observer: Observer<DealsUiState>? = null
+    var observer: Observer<Resource<List<Deal>>>? = null
 
     @Before
     fun setup(){
         MockitoAnnotations.initMocks(this)
-        dealsRepository = DealsRepository(retrofitService)
         dealsViewModel = DealsViewModel(dealsRepository)
-        observer?.let { dealsViewModel.dealsUiState.observeForever(it) }
+        observer?.let { dealsViewModel.deals.observeForever(it) }
     }
 
     @Test
@@ -54,8 +52,8 @@ class DealsViewModelTest : TestCase() {
 
         dealsViewModel.getAllDeals()
 
-        verify(observer)?.onChanged(DealsUiState.Loading)
-        verify(observer)?.onChanged(DealsUiState.Success(arrayListOf()))
+        verify(observer)?.onChanged(Resource.loading(null))
+        verify(observer)?.onChanged(Resource.success(dealsList))
     }
 
 }
