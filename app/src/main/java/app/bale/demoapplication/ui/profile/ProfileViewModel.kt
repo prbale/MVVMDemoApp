@@ -1,5 +1,5 @@
 package app.bale.demoapplication.ui.profile
 
-import androidx.lifecycle.ViewModel
+import app.bale.demoapplication.ui.base.BaseViewModel
 
-class ProfileViewModel : ViewModel()
+class ProfileViewModel : BaseViewModel()

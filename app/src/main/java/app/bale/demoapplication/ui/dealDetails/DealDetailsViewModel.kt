@@ -1,12 +1,6 @@
 package app.bale.demoapplication.ui.dealDetails
 
-import androidx.lifecycle.ViewModel
-import app.bale.demoapplication.data.model.Deal
+import app.bale.demoapplication.ui.base.BaseViewModel
 import javax.inject.Inject
 
-class DealDetailsViewModel @Inject constructor() : ViewModel() {
-
-    fun displayDealDetails(deal: Deal) {
-
-    }
-}
+class DealDetailsViewModel @Inject constructor() : BaseViewModel()

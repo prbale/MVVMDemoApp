@@ -4,26 +4,25 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.bale.demoapplication.data.model.Deal
 import app.bale.demoapplication.data.repository.DealsRepository
+import app.bale.demoapplication.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class DealsViewModel @Inject constructor(private val repository: DealsRepository) : ViewModel() {
+class DealsViewModel @Inject constructor(private val repository: DealsRepository) : BaseViewModel() {
 
     /**
      * Refer [[DealsUiState]] Sealed class.
      */
     val dealsUiState = MutableLiveData<DealsUiState>()
 
-    private val disposable = CompositeDisposable()
-
     fun getAllDeals() {
 
         dealsUiState.value = DealsUiState.Loading
 
-        disposable.add(
+        compositeDisposable.add(
             repository.getAllDeals().subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith( object: DisposableSingleObserver<List<Deal>>() {
@@ -38,10 +37,5 @@ class DealsViewModel @Inject constructor(private val repository: DealsRepository
                 })
         )
 
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposable.clear()
     }
 }
