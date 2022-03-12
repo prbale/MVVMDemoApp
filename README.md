@@ -37,5 +37,8 @@ com.bale.demoapplication # Root Package
 
 ```
 
-###To Contribute !!
-Just make pull request. You are in!
+### Contributing and reporting issues
+
+You can to contribute in this repository. Just make pull request.
+
+I appreciate any question or comment.
