@@ -8,6 +8,8 @@ import app.bale.demoapplication.data.repository.RetrofitService
 import app.bale.demoapplication.data.util.Resource
 import io.reactivex.Single
 import junit.framework.TestCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -40,15 +42,16 @@ class DealsViewModelTest : TestCase() {
         observer?.let { dealsViewModel.deals.observeForever(it) }
     }
 
+    @ExperimentalCoroutinesApi
     @Test
-    fun `get Deals Success Response`() {
+    fun `get Deals Success Response`() = runBlockingTest {
 
-        val dealsList = arrayListOf(Deal().apply {
+    val dealsList = arrayListOf(Deal().apply {
             id = "1"
             name = "Deal Name"
         })
 
-        whenever(dealsRepository.getAllDeals()).thenReturn(Single.just(dealsList))
+        whenever(dealsRepository.getAllDeals()).thenReturn(dealsList)
 
         dealsViewModel.getAllDeals()
 
