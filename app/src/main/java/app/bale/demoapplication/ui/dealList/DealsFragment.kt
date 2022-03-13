@@ -62,7 +62,7 @@ class DealsFragment :
         when (state.status) {
             Status.SUCCESS -> loadDeals(state.data)
             Status.LOADING -> showLoading()
-            Status.ERROR -> showError(state.message ?: "An error has occurred !")
+            Status.ERROR -> showError(state.message ?: "Something went wrong ¯\\_(ツ)_/¯")
         }
     }
 
