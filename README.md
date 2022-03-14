@@ -6,7 +6,28 @@
 <img src="screenshots/deal_details.png" width="235" height="500"/>
 </p>
 
+## Programming Practices Followed
+a) Android Architectural Components
+b) Dagger 2 for Dependency Injection
+c) MVVM & LiveData
+d) Retrofit with Okhttp
+e) Repository Pattern
+f) Coroutine, Coroutine Flow
+g) DataBinding
+) JUnit and Mockito for Unit Testing - Pending ( In Future )
 
+
+## Branches
+
+There are different branches as per the practices followed, namely:
+
+* [`master`](https://github.com/prbale/MVVMDemoApp/tree/master) - Master Branch, Empty.
+* [`mvvm_viewmodel_livedata_retrofit`](https://github.com/prbale/MVVMDemoApp/tree/mvvm_viewmodel_livedata_retrofit) - MVVM Implementation with LiveData
+* [`mvvm_with_dagger_implementation`](https://github.com/prbale/MVVMDemoApp/tree/mvvm_with_dagger_implementation) - Dagger DI based implementation
+* [`coroutine_implementation`](https://github.com/prbale/MVVMDemoApp) - Kotlin Coroutine implementation
+* [`coroutine_flow_implementation`](https://github.com/prbale/MVVMDemoApp/tree/coroutine_flow_implementation) - Kotlin Coroutine Flow Implementation
+  
+   
 ## Package Structures
 
 ```
