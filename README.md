@@ -7,15 +7,15 @@
 </p>
 
 ## Programming Practices Followed
-a) Android Architectural Components
-b) Dagger 2 for Dependency Injection
-c) MVVM & LiveData
-d) Retrofit with Okhttp
-e) Repository Pattern
-f) Coroutine, Coroutine Flow
-g) DataBinding
-) JUnit and Mockito for Unit Testing - Pending ( In Future )
 
+1) Android Architectural Components
+2) Dagger 2 for Dependency Injection
+3) MVVM & LiveData
+4) Retrofit with Okhttp
+5) Repository Pattern
+6) Coroutine, Coroutine Flow
+7) DataBinding
+8) JUnit and Mockito for Unit Testing - `Pending ( In Future )`
 
 ## Branches
 
